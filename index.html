@@ -17,37 +17,63 @@
       const placeholder = "please answer";
 
       // Print a list of all of the Pokemon in the pokedex:
-      console.log("1) All Pokemon in the pokedex:", placeholder);
+      console.log("1) All Pokemon in the pokedex:", Pokemon);
 
       // Print the first Pokemon in the pokedex:
-      console.log("2) The first Pokemon in the pokedex:", placeholder);
+      console.log("2) The first Pokemon in the pokedex:", Pokemon[0]);
 
       // Print the last Pokemon in the pokedex:
-      console.log("3) The last Pokemon in the pokedex:", placeholder);
+      console.log(
+        "3) The last Pokemon in the pokedex:",
+        Pokemon[Pokemon.length - 1]
+      );
 
       // Print your favorite Pokemon in the pokedex:
-      console.log("4) My favorite Pokemon is:", placeholder);
+      console.log("4) My favorite Pokemon is:", Pokemon[37].name);
 
       // Print a list of Mew's weaknesses:
       console.log(
-        `5) Mew's weaknesses are: ${placeholder}, ${placeholder}, and ${placeholder}.`
+        `5) Mew's weaknesses are: ${
+          Pokemon[Pokemon.length - 1].weaknesses[0]
+        }, ${Pokemon[Pokemon.length - 1].weaknesses[1]}, and ${
+          Pokemon[Pokemon.length - 1].weaknesses[2]
+        }.`
       );
 
       // Print a list of all pokemon names in alphabetical order:
       const ReverseAlphabeticalPokemonList = [];
 
+      for (let i = 0; i < Pokemon.length; i++) {
+        ReverseAlphabeticalPokemonList.push(Pokemon[i].name);
+      }
+
       console.log(
         "6) Reverse alphabetical ordered pokemon:",
-        ReverseAlphabeticalPokemonList
+        ReverseAlphabeticalPokemonList.sort().reverse()
       );
 
       // Print a list of pokemon weak to fire
       const weakToFirePokemon = [];
 
+      for (let i = 0; i < Pokemon.length; i++) {
+        if (Pokemon[i].weaknesses.includes("Fire")) {
+          weakToFirePokemon.push(Pokemon[i]);
+        }
+      }
+
       console.log("7) Pokemon weak to fire:", weakToFirePokemon);
 
       // Print a list of all Electric and Ground pokemon
       const electricAndGroundPokemon = [];
+
+      for (let i = 0; i < Pokemon.length; i++) {
+        if (
+          Pokemon[i].type.includes("Electric") |
+          Pokemon[i].type.includes("Ground")
+        ) {
+          electricAndGroundPokemon.push(Pokemon[i]);
+        }
+      }
 
       console.log(
         "8) Electric and ground type pokemon:",
@@ -57,9 +83,20 @@
       // Use an array method to create and print a array of pokemon objects that posses each
       // pokemon's id (as a number), name (as a string), height (as a string), weight (as a string),
       // and spawn chance (as a number).
-      const pokeRay = [];
+      const pokeRay = Pokemon.map(pokemon => {
+        const consolidatedPokeData = {
+          id: pokemon.id,
+          name: `${pokemon.name}`,
+          height: `${pokemon.height}`,
+          weight: `${pokemon.weight}`,
+          spawn_chance: pokemon.spawn_chance
+        };
+        return consolidatedPokeData;
+      });
 
       console.log("9) New pokeRay:", pokeRay);
+
+      // Create and print a list of pokemon with a spawn chance of hire than 1 using your new pokeRay
     </script>
   </head>
 
