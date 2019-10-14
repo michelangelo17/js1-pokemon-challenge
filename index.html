@@ -17,24 +17,24 @@
       const placeholder = "please answer";
 
       // Print a list of all of the Pokemon in the pokedex:
-      console.log("1) All Pokemon in the pokedex:", placeholder);
+      console.log("1) All Pokemon in the pokedex:", Pokemon);
 
       // Print the first Pokemon in the pokedex:
-      console.log("2) The first Pokemon in the pokedex:", placeholder);
+      console.log("2) The first Pokemon in the pokedex:", Pokemon[0]);
 
       // Print the last Pokemon in the pokedex:
-      console.log("3) The last Pokemon in the pokedex:", placeholder);
+      console.log("3) The last Pokemon in the pokedex:", Pokemon[Pokemon.length - 1]);
 
       // Print the name of your favorite Pokemon in the pokedex:
-      console.log("4) My favorite Pokemon is:", placeholder);
+      console.log("4) My favorite Pokemon is:", Pokemon.filter(poke => poke.name === "Raichu"));
 
       // Print a list of Mew's weaknesses:
       console.log(
-        `5) Mew's weaknesses are: ${placeholder}, ${placeholder}, and ${placeholder}.`
+        `5) Mew's weaknesses are: ${Pokemon[150].weaknesses[0]}, ${Pokemon[150].weaknesses[1]}, and ${Pokemon[150].weaknesses[2]}.`
       );
 
       // Print a list of all pokemon names in alphabetical order:
-      const ReverseAlphabeticalPokemonList = [];
+      const ReverseAlphabeticalPokemonList = Pokemon.map(poke => poke.name).sort().reverse();
 
       console.log(
         "6) Reverse alphabetical ordered pokemon:",
@@ -42,12 +42,12 @@
       );
 
       // Print a list of pokemon weak to fire
-      const weakToFirePokemon = [];
+      const weakToFirePokemon = Pokemon.filter(poke => poke.weaknesses.includes("Fire"));
 
       console.log("7) Pokemon weak to fire:", weakToFirePokemon);
 
       // Print a list of all Electric and Ground pokemon
-      const electricAndGroundPokemon = [];
+      const electricAndGroundPokemon = Pokemon.filter(poke => poke.type.includes("Electric") || poke.type.includes("Ground"));
 
       console.log(
         "8) Electric and ground type pokemon:",
@@ -57,7 +57,16 @@
       // Use an array method to create and print a array of pokemon objects that posses each
       // pokemon's id (as a number), name (as a string), height (as a string), weight (as a string),
       // and spawn chance (as a number).
-      const pokeRay = [];
+      const pokeRay = Pokemon.map(poke => {
+        const newPokemonObj = {
+          id: poke.id,
+          name: poke.name,
+          height: poke.height,
+          weight: poke.weight,
+          spawn_chance: `${poke.spawn_chance.toString()}%`
+        }
+        return newPokemonObj;
+      });
 
       console.log("9) New pokeRay:", pokeRay);
     </script>
